@@ -45,11 +45,11 @@ struct ReferredNote : public BasicNote {
 class NotesCluster {
     std::vector<IndexedNote> notes;
 
-    static bool ByGate(const IndexedNote &l, const IndexedNote &r) {    // ��r(<)
+    static bool ByGate(const IndexedNote &l, const IndexedNote &r) {    // 比較(<)
         return l.gate < r.gate;
     }
 
-    static bool ByVel(const IndexedNote &l, const IndexedNote &r) {    // ��r(<)
+    static bool ByVel(const IndexedNote &l, const IndexedNote &r) {    // 比較(<)
         return l.vel < r.vel;
     }
 
@@ -333,7 +333,7 @@ void Division::def_transpose_to(ZZNumber nbegin) {
             definition.zz = (unsigned) tmp;
         }
     } else {
-        // �߂�ǂ��̂ŏ_��̂Ȃ���������
+        // めんどいので柔軟性のない書き方で
         for (auto & definition : definitions) {
             definition.zz = nbegin;
             nbegin.increment_in_ff();

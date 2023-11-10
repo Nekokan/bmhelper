@@ -27,9 +27,9 @@ protected:
 
 private:
 
-	MidiNotesLane note_events;	// �m�[�g
-	MidiParamsLane pb_events;	// �s�b�`�x���h
-	MidiCCLanesMap cc_lanes;	// �R���g���[���`�F���W
+	MidiNotesLane note_events;	// ノート
+	MidiParamsLane pb_events;	// ピッチベンド
+	MidiCCLanesMap cc_lanes;	// コントロールチェンジ
 
 
 public:

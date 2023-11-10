@@ -12,26 +12,26 @@ struct DivisionSetting{
 	wxString name;
 
 	// midi setting
-	bool src_copy;				// ���̃V�[�P���X�����̂܂܎c��(true�̏ꍇ���̍��ڂ͖���)
-	size_t head_margin;			// ���̗]��
-	size_t min_interval;		// �m�[�g�Ԃ̍ŏ��Ԋu(�m�[�g�I�t���玟�̃m�[�g�I���܂�)
+	bool src_copy;				// 元のシーケンスをそのまま残す(trueの場合他の項目は無効)
+	size_t head_margin;			// 頭の余白
+	size_t min_interval;		// ノート間の最小間隔(ノートオフから次のノートオンまで)
 	enum SortType{
 		SORT_NONE		= 0,
-		SORT_NN_GATE_V	= 1,	// �m�[�gNo. / ���� / �x���V�e�B
+		SORT_NN_GATE_V	= 1,	// ノートNo. / 長さ / ベロシティ
 		SORT_NN_V_GATE	= 2,
 		SORT_GATE_NN_V	= 3,
 		SORT_GATE_V_NN	= 4,
 		SORT_V_NN_GATE	= 5,
 		SORT_V_GATE_NN	= 6
 	} sort_type;
-	size_t gate_threshold;		// �m�[�g�𓯈ꎋ���钷����臒l
+	size_t gate_threshold;		// ノートを同一視する長さの閾値
 	size_t velocity_threshold;
 
 	// definition setting
-	bool zz_definition;			// ZZ��`��L���ɂ���
-	bool ml_definition;			// ���d��`��L���ɂ���
-	ZZNumber start_definition;	// �J�n��`�ԍ�
-	int ml_threshold;			// ���d��`���邩�ǂ����̃m�[�g�Ԋu��臒l(���l���ݒ�B���x�̏ꍇ�͑��d��`���Ȃ�)
+	bool zz_definition;			// ZZ定義を有効にする
+	bool ml_definition;			// 多重定義を有効にする
+	ZZNumber start_definition;	// 開始定義番号
+	int ml_threshold;			// 多重定義するかどうかのノート間隔の閾値(負値も設定可。丁度の場合は多重定義しない)
 
 	DivisionSetting(const wxString &name, size_t quantize);
 };
@@ -90,8 +90,8 @@ public:
 	//bool shift_definition_right(int bound_def_num=0);
 	bool head_margin_exists(){ return head_margin != 0; }
 
-	wxString get_div_sequence_data() const;						// �ؒf�ʒu�̃V�[�P���X�f�[�^
-	wxString get_bms_sequence_data(const MidiData &src) const;	// BMS�V�[�P���X�f�[�^
+	wxString get_div_sequence_data() const;						// 切断位置のシーケンスデータ
+	wxString get_bms_sequence_data(const MidiData &src) const;	// BMSシーケンスデータ
 	
 	bool is_zz_enabled(){ return zz_enabled; }
 	void def_transpose_up();
